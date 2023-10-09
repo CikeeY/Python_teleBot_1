@@ -1,19 +1,22 @@
 import json
 import telebot
-from telebot import types
 import requests
+from telebot import types
 from bs4 import BeautifulSoup as BS
+
 
 headers = {'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36'}
 
 bot = telebot.TeleBot('6086228035:AAFDeqPzXntsvxNbTf0O3Kflu_sO7gsaXp0')
 #bot = telebot.TeleBot('6425255039:AAFDI3b_merGpbBJK041gHWpBD1CT30WiA0')
 
+urlWeb = 'https://habrahabr.ru'
 urlUSD = 'https://www.banki.ru/products/currency/usd/'
 
 cloud = './img/cloud.jpg'
 rain = './img/rain.jpg'
 clear = './img/sun.png'
+
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -21,13 +24,13 @@ def start(message):
     btn1 = types.KeyboardButton("На сайт")
     btn2 = types.KeyboardButton("Сервис")
     markup.add(btn1, btn2)
-    bot.send_message(message.chat.id, text="Здравствуй, {0.first_name}!\nДля работы нажми /start".format(message.from_user), reply_markup=markup)
+    bot.send_message(message.chat.id, text="Здравствуй, {0.first_name}!\n".format(message.from_user), reply_markup=markup)
     
 @bot.message_handler(content_types=['text'])
 def func(message):
     if(message.text == "На сайт"):
         markup = types.InlineKeyboardMarkup()
-        btn_my_site= types.InlineKeyboardButton(text='Сайт', url='https://habrahabr.ru')
+        btn_my_site= types.InlineKeyboardButton(text='habrahabr.ru', url=urlWeb)
         markup.add(btn_my_site)
         bot.send_message(message.chat.id, "На сайт", reply_markup = markup)
     elif(message.text == "Сервис"):
