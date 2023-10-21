@@ -24,7 +24,7 @@ def start(message):
     btn1 = types.KeyboardButton("На сайт")
     btn2 = types.KeyboardButton("Сервис")
     markup.add(btn1, btn2)
-    bot.send_message(message.chat.id, text="Здравствуй, {0.first_name}!\n".format(message.from_user), reply_markup=markup)
+    bot.send_message(message.chat.id, text="Здравствуй, {0.first_name}!\nКонтакт моего разработчика: https://t.me/Pussyeater_228".format(message.from_user), reply_markup=markup)
     
 @bot.message_handler(content_types=['text'])
 def func(message):
