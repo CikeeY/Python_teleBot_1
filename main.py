@@ -49,27 +49,20 @@ def func(message):
             
             page1 = requests.get(urlMTSS, headers=headers)
             soup = BS(page1.text, 'lxml')
-            cours = soup.find("div", {"class" : "Text__sc-j452t5-0 bCCQWi"}).text
-            bot.send_message(message.chat.id, f'Курс доллара: {cours}')
+            cours = soup.find("td", {"class" : "greendark"}).text
+            bot.send_message(message.chat.id, f'Дивиденды МТС: {cours}')
             
             page1 = requests.get(urlSBER, headers=headers)
             soup = BS(page1.text, 'lxml')
-            cours = soup.find("div", {"class" : "Text__sc-j452t5-0 bCCQWi"}).text
-            bot.send_message(message.chat.id, f'Курс доллара: {cours}')
+            cours = soup.find("td", {"class" : "greendark"}).text
+            bot.send_message(message.chat.id, f'Дивиденды Сбер: {cours}')
             
             page1 = requests.get(urlGAZP, headers=headers)
             soup = BS(page1.text, 'lxml')
-            cours = soup.find("div", {"class" : "Text__sc-j452t5-0 bCCQWi"}).text
-            bot.send_message(message.chat.id, f'Курс доллара: {cours}')
+            cours = soup.find("td", {"class" : "greendark"}).text
+            bot.send_message(message.chat.id, f'Дивиденды Газпром: {cours}')
         except Exception as err:
             print(err)
-        
-    elif (message.text == "Меню"):
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        button1 = types.KeyboardButton("☁️ Погода")
-        button2 = types.KeyboardButton("💼 Рынок")
-        markup.add(button1, button2)
-        bot.send_message(message.chat.id, reply_markup=markup)
     else:
         bot.send_message(message.chat.id, text="На такую комманду я не запрограммировал..")
 
